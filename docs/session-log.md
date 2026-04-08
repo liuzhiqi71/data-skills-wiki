@@ -51,3 +51,9 @@
 - Commands: `curl http://127.0.0.1:4173/python/index.html`; `rg 'quarto-preview|inputFile|watchInputFile'`; `python3 -m http.server 4174 --bind 127.0.0.1`; `curl http://127.0.0.1:4174/...`; `lsof -ti tcp:4173`; `lsof -ti tcp:4174`
 - Result: 静态构建文件中不含 `quarto-preview.js`；本地静态地址 `http://127.0.0.1:4174/` 返回 `200`，首页和子页面可访问，且不再包含预览工具条；4173 预览端口已不再占用，4174 静态服务仍在运行。
 - Next: 等你在 4174 看页面；如果没问题，再决定是继续本地交付，还是改成别的私有托管方式。
+
+## 2026-04-08 16:03
+- Did: 参考 `queueupenglish` 的最简静态发布方式完成上线前检查；对源码和构建产物做了 API / token / 本地路径扫描；创建 GitHub 仓库、推送 `main`、启用 GitHub Pages，并修复首次部署所需的 Pages workflow 配置。
+- Commands: `rg` 扫描源码与 `_site`；`gitleaks detect --no-git`; `gh auth status`; `gh repo create liuzhiqi71/data-skills-wiki --public`; `git push`; `gh api -X POST repos/liuzhiqi71/data-skills-wiki/pages -f build_type=workflow`; `gh workflow run publish.yml`; `gh run watch ...`; `curl -I https://liuzhiqi71.github.io/data-skills-wiki/`
+- Result: 未发现 API key、token、凭证或本地路径泄露；仓库已发布到 GitHub，Pages 已通过 workflow 成功部署；线上地址 `https://liuzhiqi71.github.io/data-skills-wiki/` 返回 `200`，首页关键导航文案命中正常。
+- Next: 如果后续还要继续更新内容，直接在本仓库提交并按需手动触发 `publish.yml` 即可。
