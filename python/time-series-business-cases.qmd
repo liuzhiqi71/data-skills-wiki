@@ -1,0 +1,55 @@
+---
+title: "Python 专题：时间序列业务案例"
+---
+
+## 这个页面解决什么问题
+
+你已经知道 `resample()` 和 `rolling()` 这些名字，但更关心它们在业务里怎么组合。这个页面只讲高频时间序列工作流，不讲理论推导。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+daily = (
+    df.assign(date=pd.to_datetime(df["date"]))
+      .groupby(["store", pd.Grouper(key="date", freq="D")])["sales"]
+      .sum()
+      .rename("daily_sales")
+      .reset_index()
+)
+
+daily["ma7"] = (
+    daily.sort_values(["store", "date"])
+         .groupby("store")["daily_sales"]
+         .transform(lambda s: s.rolling(7, min_periods=1).mean())
+)
+```
+
+## 真实使用场景
+
+- 门店日销监控：先按店按天聚合，再补 7 日滚动均值看趋势，而不是盯原始波动。
+- 月度经营复盘：把订单明细压成月度序列，算环比、同比和累计达成。
+- 告警监控：按小时聚合错误数，用 `ewm()` 或 `rolling()` 看是否连续上升。
+- 活跃用户看板：按渠道或地区做 grouped time resampling，再对比多个分组的节奏差异。
+
+## 相关函数/公式
+
+- `pd.to_datetime()`
+- `pd.Grouper()`
+- `groupby()` + `resample()`
+- `rolling()` / `ewm()`
+- `shift()` / `pct_change()` / `diff()`
+- `asfreq()` / `interpolate()`
+
+## 注意事项
+
+- 先排序，再做窗口；没排序的滚动值没有业务意义。
+- 分组时间重采样最容易漏掉空档日期，报表前先确认是否需要补齐。
+- 日、周、月口径切换时，先明确指标是“求和”还是“取最后值”。
+- 时区和自然日边界要提前定，不然接口数据和报表口径会打架。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 11.6 节 Resampling and Frequency Conversion 和第 11.7 节 Moving Window Functions。  
+**最后复核日期**：2026-04-08

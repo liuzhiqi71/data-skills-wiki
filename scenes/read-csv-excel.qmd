@@ -1,0 +1,59 @@
+---
+title: "读取 CSV / Excel"
+---
+
+## 这个页面解决什么问题
+
+把外部文件可靠地读进来，避免一开始就因为编码、列类型、日期字段或工作表选择出错。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+import pandas as pd
+
+df_csv = pd.read_csv(
+    "sales.csv",
+    encoding="utf-8",
+    parse_dates=["order_date"],
+    usecols=["order_id", "customer", "amount", "order_date"]
+)
+
+df_xlsx = pd.read_excel(
+    "sales.xlsx",
+    sheet_name="orders",
+    usecols="A:D"
+)
+```
+
+### Excel
+
+1. 选择 `数据 -> 获取数据 -> 从文本/CSV`。
+2. 在预览窗口确认分隔符、编码和列标题。
+3. 需要后续清洗时，点“转换数据”进入 Power Query；只想快速导入时，点“加载”。
+4. 导入工作簿里的一张表时，优先把原始区域转成 Excel Table，再做后续公式和透视表。
+:::
+
+## 真实使用场景
+
+- 月度销售 CSV 每次新增列，但你只关心 4 列：用 `usecols` 控制读入范围。
+- CRM 导出的日期列混有文本：直接在 `read_csv` 里用 `parse_dates`，比读进来后再转更稳。
+- 一个工作簿里有多个 sheet：先确认业务主表的 sheet 名，不要默认读第一张。
+
+## 相关函数/公式
+
+- Python：`pd.read_csv()`、`pd.read_excel()`、`usecols`、`dtype`、`parse_dates`、`sheet_name`
+- Excel：Power Query、Excel Table、文本/CSV 导入向导
+
+## 注意事项
+
+- 编码不对时，先试 `utf-8`，再试业务方常见导出编码。
+- Excel 里合并单元格、空表头、手工备注行，都会影响后续透视和公式。
+- `amount`、`id`、`日期` 这三类列最好在导入时就确认类型。
+
+---
+
+**来源映射**：对应 Python 书中的数据加载主题与 Excel 书中的导入/查询工作流。  
+**最后复核日期**：2026-04-08

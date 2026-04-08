@@ -1,0 +1,53 @@
+---
+title: "Python 专题：建模前特征工程实战"
+---
+
+## 这个页面解决什么问题
+
+很多分析项目不是卡在模型，而是卡在“怎么把业务表整理成模型可吃的特征表”。这一页聚焦建模前的最后一公里。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+from patsy import dmatrices
+
+feat = (
+    df.assign(
+        order_date=pd.to_datetime(df["order_date"]),
+        month=lambda x: x["order_date"].dt.month,
+        is_weekend=lambda x: x["order_date"].dt.dayofweek >= 5,
+        promo_lag_1=lambda x: x["promo"].shift(1),
+    )
+    .pipe(pd.get_dummies, columns=["city"], drop_first=True)
+)
+
+y, X = dmatrices("sales ~ promo + promo_lag_1 + is_weekend + city_SZ + city_SH", feat)
+```
+
+## 真实使用场景
+
+- 营销复盘：把投放、价格、节假日、渠道信息整理成特征表，快速试一个解释性模型。
+- 需求预测前处理：构造滞后值、滚动均值、月份和周几等时间特征。
+- 用户分析：把类别字段转成哑变量，把连续变量分箱，给后续分类或回归模型做输入。
+
+## 相关函数/公式
+
+- `assign()`
+- `shift()` / `rolling()`
+- `pd.get_dummies()`
+- `cut()` / `qcut()`
+- `fillna()`
+- `patsy.dmatrices()` / `patsy.dmatrix()`
+
+## 注意事项
+
+- 特征工程先保留主键和时间字段，方便回查原始样本。
+- 构造滞后特征时要先按实体和时间排序，不然会串行。
+- 类别变量太稀疏时不要一股脑全展开，先看业务上是否要合并类别。
+- 训练用特征表和汇报用分析表通常不是一个东西，别混在一起维护。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 12.1 节 Interfacing Between pandas and Model Code，以及第 12.2 节 Creating Model Descriptions with Patsy。  
+**最后复核日期**：2026-04-08

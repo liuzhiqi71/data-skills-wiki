@@ -1,0 +1,44 @@
+---
+title: "Python 专题：数据加载、API 与数据库"
+---
+
+## 这个页面解决什么问题
+
+不只是 CSV 和 Excel，真实工作里经常还会碰到 JSON、网页表格、HTTP API 和数据库连接。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+import requests
+
+data = requests.get("https://api.example.com/orders").json()
+df = pd.DataFrame(data)
+
+tables = pd.read_html("https://example.com/report")
+```
+
+## 真实使用场景
+
+- 从业务 API 拉订单或用户数据。
+- 从网页表格抓公开数据。
+- 从数据库导出结果再继续清洗。
+
+## 相关函数/工具
+
+- `read_csv()` / `read_excel()`
+- `read_json()`
+- `read_html()`
+- `requests`
+- SQL 读取接口
+
+## 注意事项
+
+- API 更关注认证、分页和速率限制。
+- HTML 表格可用，但页面结构变动时最脆。
+- 先想清楚原始数据主键和增量策略，再设计后续清洗。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 6 章中关于文本格式、JSON、HTML、Web API 和数据库交互的主题。  
+**最后复核日期**：2026-04-08

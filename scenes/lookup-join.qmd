@@ -1,0 +1,53 @@
+---
+title: "查找匹配与关联"
+---
+
+## 这个页面解决什么问题
+
+把两张或多张表按键值关联起来，比如给订单表补客户等级、给回款表补销售姓名、给明细补字典表标签。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+result = orders.merge(
+    customers[["customer_id", "tier"]],
+    on="customer_id",
+    how="left",
+    validate="many_to_one"
+)
+```
+
+### Excel
+
+```text
+=XLOOKUP(A2,客户表!$A:$A,客户表!$C:$C,"未找到")
+=INDEX(客户表!$C:$C,MATCH(A2,客户表!$A:$A,0))
+```
+
+如果关联逻辑要重复使用，Power Query 的 `Merge` 比手工公式更稳。
+:::
+
+## 真实使用场景
+
+- 用客户主数据表给订单表补客户等级和所属销售。
+- 用产品字典表给交易明细补品类和品牌。
+- 两张结构接近的月报要拼在一起，再统一分析。
+
+## 相关函数/公式
+
+- Python：`merge()`、`join()`、`concat()`、`combine_first()`、`map()`
+- Excel：`XLOOKUP()`、`INDEX()+MATCH()`、`SUMPRODUCT()`、Power Query `Merge` / `Append`
+
+## 注意事项
+
+- 关联前先检查键值是否唯一，尤其是“看起来唯一”的客户名和产品名。
+- Python 里 `validate` 很有用，能提前发现一对多、多对多问题。
+- Excel 查找结果如果大量“未找到”，先排查前后空格、文本数值混用和大小写。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 8 章数据合并与重塑主题，以及《Microsoft Excel 365 Bible》第 14 章查找公式和第 36 章 Power Query 合并主题。  
+**最后复核日期**：2026-04-08

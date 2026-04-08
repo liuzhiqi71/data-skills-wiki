@@ -1,0 +1,50 @@
+---
+title: "Python 专题：GroupBy / apply 实战配方"
+---
+
+## 这个页面解决什么问题
+
+当简单的 `sum`、`mean` 不够用，而你又不想把逻辑拆成很多中间表时，`GroupBy` 和 `apply` 是最常用的进阶入口。
+
+## 最小可用示例
+
+```python
+summary = (
+    df.groupby("region", as_index=False)
+      .agg(total_sales=("sales", "sum"),
+           avg_sales=("sales", "mean"))
+)
+
+top2 = (
+    df.sort_values("sales", ascending=False)
+      .groupby("region", group_keys=False)
+      .head(2)
+)
+```
+
+## 实战场景
+
+- 每个地区取前 2 个最高销售客户。
+- 每个分组用自己的均值补缺失值。
+- 每个分组计算加权平均或相关系数。
+- 先分组再分桶，看不同区间里的结构差异。
+
+## 相关方法
+
+- `groupby()`
+- `agg()`
+- `transform()`
+- `apply()`
+- `group_keys=False`
+- `rank()` / `quantile()`
+
+## 注意事项
+
+- 能用 `agg()` / `transform()` 就先别上 `apply()`，更稳也更快。
+- 分组后返回的索引形状经常变化，接下一步前先检查。
+- `apply()` 很强，但最容易把逻辑写得难读。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 10 章中 split-apply-combine、group transforms、分桶分析、组内补值、加权平均和相关分析的实战主题。  
+**最后复核日期**：2026-04-08

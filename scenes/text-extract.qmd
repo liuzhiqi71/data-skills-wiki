@@ -1,0 +1,52 @@
+---
+title: "文本拆分与提取"
+---
+
+## 这个页面解决什么问题
+
+把混在一个单元格或一列里的文本拆开、提取、清洗，拿到后续能用于分析的结构化字段。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+df["domain"] = df["email"].str.extract(r"@(.+)$")
+df[["city", "district"]] = df["location"].str.split("-", n=1, expand=True)
+df["clean_name"] = df["name"].str.strip().str.replace(r"\s+", " ", regex=True)
+```
+
+### Excel
+
+```text
+=TEXTBEFORE(A2,"@")
+=TEXTAFTER(A2,"@")
+=TEXTSPLIT(B2,"-")
+=TRIM(CLEAN(C2))
+```
+
+如果数据格式稳定，也可以用 `数据 -> 分列` 或 Flash Fill 快速拆分。
+:::
+
+## 真实使用场景
+
+- 从邮箱里提取域名，看客户来自哪些公司。
+- 从“深圳-南山”这种组合字段拆出城市和区县。
+- 清理 CRM 里带有隐藏空格、换行符、奇怪字符的姓名和地址。
+
+## 相关函数/公式
+
+- Python：`str.split()`、`str.extract()`、`str.replace()`、正则表达式
+- Excel：`TEXTSPLIT()`、`TEXTBEFORE()`、`TEXTAFTER()`、`LEFT()`、`RIGHT()`、`MID()`、`TRIM()`、`CLEAN()`
+
+## 注意事项
+
+- 先抽样看 20 到 50 行，确认分隔符真的一致。
+- 正则提取很强，但也最容易过度匹配；先从简单模式开始。
+- Excel 的 Flash Fill 适合一次性处理，规则固定且可复用时更建议公式或 Power Query。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 7 章字符串处理主题，以及《Microsoft Excel 365 Bible》第 12 章文本公式与第 21 章文本清洗主题。  
+**最后复核日期**：2026-04-08

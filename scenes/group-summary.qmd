@@ -1,0 +1,57 @@
+---
+title: "分组统计与汇总"
+---
+
+## 这个页面解决什么问题
+
+按客户、地区、月份、产品等维度做求和、计数、平均值和多指标汇总。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+summary = (
+    df.groupby(["region", "product"], as_index=False)
+      .agg(
+          order_count=("order_id", "count"),
+          total_amount=("amount", "sum"),
+          avg_amount=("amount", "mean")
+      )
+      .sort_values("total_amount", ascending=False)
+)
+```
+
+### Excel
+
+```text
+=SUMIFS($D:$D,$A:$A,G2,$B:$B,H2)
+=COUNTIFS($A:$A,G2,$B:$B,H2)
+=AVERAGEIFS($D:$D,$A:$A,G2,$B:$B,H2)
+```
+
+如果汇总维度多、需要拖拽看结果，直接上透视表通常更快。
+:::
+
+## 真实使用场景
+
+- 按地区和产品看销售额：`groupby + agg` 或 `SUMIFS`。
+- 按客户统计订单数和客单价：一张结果表里同时放 `count / sum / mean`。
+- 汇总结果还要继续出图：Python 里分组后直接接可视化会更顺。
+
+## 相关函数/公式
+
+- Python：`groupby()`、`agg()`、`size()`、`nunique()`、`sort_values()`
+- Excel：`SUMIFS()`、`COUNTIFS()`、`AVERAGEIFS()`、分类汇总、透视表
+
+## 注意事项
+
+- 分组前先确认字段是否有前后空格、大小写不一致、隐藏字符。
+- Excel 整列引用在大表里会慢，正式报表更建议锁定实际数据范围。
+- 汇总表最好保留原始明细链接，方便回查。
+
+---
+
+**来源映射**：对应 Python 书中的 GroupBy 与聚合主题，以及 Excel 书中的条件汇总函数与数据汇总主题。  
+**最后复核日期**：2026-04-08

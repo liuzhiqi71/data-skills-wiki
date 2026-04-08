@@ -1,0 +1,53 @@
+---
+title: "时间日期处理"
+---
+
+## 这个页面解决什么问题
+
+把文本日期转成可计算的日期类型，并提取年月日、月份区间、月底日期、周次等常见分析字段。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+df["month"] = df["order_date"].dt.to_period("M").astype(str)
+df["week_day"] = df["order_date"].dt.day_name()
+df["month_end"] = df["order_date"] + pd.offsets.MonthEnd(0)
+```
+
+### Excel
+
+```text
+=DATE(YEAR(A2),MONTH(A2),1)
+=EOMONTH(A2,0)
+=TEXT(A2,"yyyy-mm")
+=WEEKDAY(A2,2)
+```
+
+需要先把“看起来像日期、实际是文本”的列真正转成日期类型。
+:::
+
+## 真实使用场景
+
+- 月报：把订单日期统一转成 `yyyy-mm`，再做分组或透视。
+- 回款跟踪：取月底日期，方便做账期区间判断。
+- 营业日分析：先提取星期几，再看不同工作日的成交差异。
+
+## 相关函数/公式
+
+- Python：`pd.to_datetime()`、`.dt`、`MonthEnd`、`dt.strftime()`
+- Excel：`DATE()`、`TEXT()`、`EOMONTH()`、`TODAY()`、`WEEKDAY()`
+
+## 注意事项
+
+- 日期文本一旦格式混乱，先统一原始字符串再转类型。
+- `errors="coerce"` 很适合排查坏值，会把无法解析的内容变成缺失值。
+- Excel 里真正的日期是序列值，只改显示格式不代表类型已经正确。
+
+---
+
+**来源映射**：对应 Python 书中的时间序列基础主题，以及 Excel 书中的日期时间函数主题。  
+**最后复核日期**：2026-04-08

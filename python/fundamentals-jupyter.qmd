@@ -1,0 +1,46 @@
+---
+title: "Python 专题：基础工作流与 Jupyter"
+---
+
+## 这个页面解决什么问题
+
+如果你是从 Excel 转过来，或者偶尔写 Python 但还没形成稳定的数据分析工作流，这页帮你把“解释器、Notebook、脚本、基础数据结构”串起来。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+records = [
+    {"customer": "A", "amount": 120},
+    {"customer": "B", "amount": 88},
+]
+
+df = pd.DataFrame(records)
+df.head()
+df.info()
+```
+
+## 真实使用场景
+
+- 临时探索数据：先在 Notebook 里试，再把稳定逻辑移到脚本。
+- 跟踪变量变化：用交互式环境比纯脚本更快。
+- 从列表、字典、文件读进来，最终通常还是要落到 `DataFrame`。
+
+## 相关主题
+
+- Python 解释器
+- IPython / Jupyter
+- list / dict / set / tuple
+- 函数、异常处理、文件读写
+
+## 注意事项
+
+- Notebook 适合探索，不代表最终产物也该停在 Notebook。
+- 数据分析里最常见的基础容器还是 list、dict 和 DataFrame。
+- 代码顺序和执行顺序不一致时，Notebook 很容易让人误判结果。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 1 至 3 章关于环境、语言基础、内置结构和文件处理的主题。  
+**最后复核日期**：2026-04-08

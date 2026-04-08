@@ -1,0 +1,50 @@
+---
+title: "Excel 书中工作流：清洗、透视、Power Query、图表"
+---
+
+## 这个页面解决什么问题
+
+《Microsoft Excel 365 Bible》很强的一点，不只是讲公式，而是把“导入 -> 清洗 -> 汇总 -> 图表 -> 导出”串成完整办公工作流。这一页把这些工作流压成几个参考入口。
+
+## 1. 导入并清洗外部数据
+
+- 代表动作：导入文本文件、拆分文本、去重、填补空白、清理异常字符、导出 CSV/TXT。
+- 对应页面：
+- [读取 CSV / Excel](../scenes/read-csv-excel.qmd)
+- [清洗缺失值和异常值](../scenes/missing-values.qmd)
+- [筛选、排序、去重](../scenes/filter-sort-dedup.qmd)
+- [文本拆分与提取](../scenes/text-extract.qmd)
+- [导出报表](../scenes/export-report.qmd)
+
+## 2. 用透视表回答业务问题
+
+- 代表动作：按日期、分支、账户类型等维度交叉汇总，快速改行列和分组。
+- 对应页面：
+- [透视表与交叉分析](../scenes/pivot-analysis.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+
+## 3. 用图表做汇报
+
+- 代表动作：折线图看趋势、柱状图做对比、PivotChart 接透视结果、Sparkline 做表内微型趋势。
+- 对应页面：
+- [可视化与图表](../scenes/visualization-charts.qmd)
+
+## 4. 用 Power Query 管理重复流程
+
+- 代表动作：导入外部文件、步骤化转换、追加多月数据、合并字典表、模糊匹配。
+- 对应页面：
+- [读取 CSV / Excel](../scenes/read-csv-excel.qmd)
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+- [文本拆分与提取](../scenes/text-extract.qmd)
+
+## 5. 什么时候该停在 Excel，什么时候该转 Python
+
+- 单次分析、临时看结果、需要和同事共用：Excel 很合适。
+- 步骤重复、数据源多、清洗逻辑复杂、每周都要重跑：更建议把清洗和汇总迁到 Python，再把结果回传 Excel。
+- 对照入口：
+- [Python vs Excel](../compare/python-vs-excel.qmd)
+
+---
+
+**来源映射**：对应《Microsoft Excel 365 Bible》Part III 至 Part V 中的数据分析、图表、透视表和 Power Query 工作流。  
+**最后复核日期**：2026-04-08

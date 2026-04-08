@@ -1,0 +1,50 @@
+---
+title: "Python 专题：建模库接口感"
+---
+
+## 这个页面解决什么问题
+
+你不一定要在这个站里学完整建模理论，但需要知道清洗好的 `pandas` 数据怎么顺手接到建模库里去。
+
+## 最小可用示例
+
+```python
+import statsmodels.formula.api as smf
+from sklearn.linear_model import LinearRegression
+
+model = smf.ols("sales ~ price + promo + traffic", data=df).fit()
+print(model.summary())
+
+X = df[["price", "promo", "traffic"]]
+y = df["sales"]
+reg = LinearRegression().fit(X, y)
+```
+
+## 真实使用场景
+
+- 营销复盘：用线性模型粗看价格、促销、流量和销售额关系。
+- 时间序列前置分析：先用 `pandas` 把特征表清洗好，再交给模型库。
+- 团队协作：分析同事在 `pandas` 里产出特征表，算法同事接着建模。
+
+## 相关函数/库
+
+- `statsmodels`
+- `patsy`
+- `scikit-learn`
+- `DataFrame` 到矩阵/特征列的映射
+
+## 这本书更偏什么
+
+- 重点不是教完整机器学习，而是教你如何把 `pandas` 数据表顺利接到模型代码。
+- 公式接口适合快速试验；显式特征矩阵更适合工程化和可控建模流程。
+
+## 注意事项
+
+- 先把缺失值、类别型变量、日期字段处理好，再喂给模型。
+- 解释性分析和预测模型不是一回事，不要混在一个结论里。
+- 这部分是“入口”，不是建模大全。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 12 章 Introduction to Modeling Libraries in Python。  
+**最后复核日期**：2026-04-08

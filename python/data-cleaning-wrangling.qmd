@@ -1,0 +1,45 @@
+---
+title: "Python 专题：清洗、合并与重塑"
+---
+
+## 这个页面解决什么问题
+
+把零散、脏乱、多表的数据压成能分析的整洁表结构，是这本书里最核心的能力块之一。
+
+## 最小可用示例
+
+```python
+tidy = (
+    raw.drop_duplicates()
+       .assign(city=raw["city"].str.strip())
+       .merge(dim_city, on="city", how="left")
+)
+
+long = tidy.melt(id_vars=["customer_id"], var_name="metric", value_name="value")
+wide = long.pivot(index="customer_id", columns="metric", values="value")
+```
+
+## 真实使用场景
+
+- 把多份月报拼成一张长表再统一分析。
+- 把字典表补到主表上。
+- 把“宽表报表格式”转成更适合分析和作图的长表。
+
+## 相关函数
+
+- `drop_duplicates()`
+- `replace()` / `map()` / `rename()`
+- `merge()` / `concat()`
+- `melt()` / `pivot()` / `pivot_table()`
+- `get_dummies()`
+
+## 注意事项
+
+- 不要一边清洗一边丢失主键。
+- 合并前先判断是一对一、一对多还是多对多。
+- 整洁数据的关键不是“列多还是列少”，而是每列语义是否单一稳定。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 7 至 8 章的数据清洗、字符串处理、分类数据、合并、连接和重塑主题。  
+**最后复核日期**：2026-04-08

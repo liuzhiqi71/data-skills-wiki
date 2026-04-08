@@ -1,0 +1,48 @@
+---
+title: "可视化与图表"
+---
+
+## 这个页面解决什么问题
+
+把一张汇总表变成能读出趋势、比较和分布的图，不只是“有图”，而是图形类型和结论对应得上。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+summary.plot.line(x="month", y="sales", marker="o", title="Monthly Sales")
+region_summary.plot.bar(x="region", y="sales", color="#176087")
+df["amount"].plot.hist(bins=20)
+```
+
+### Excel
+
+1. 选中汇总表。
+2. 选择 `插入 -> 图表`。
+3. 趋势看折线图，类别对比看柱状图，分布看直方图。
+4. 如果数据来自透视表，优先用 PivotChart。
+:::
+
+## 真实使用场景
+
+- 月度销售额看趋势：折线图。
+- 不同地区销售额比较：柱状图或条形图。
+- 订单金额分布是否极端：直方图。
+
+## 相关函数/公式
+
+- Python：`plot.line()`、`plot.bar()`、`plot.hist()`、`seaborn` 分类图
+- Excel：折线图、柱状图、直方图、PivotChart、Sparkline、趋势线
+
+## 注意事项
+
+- 图前先汇总好，不要把明细几十万行直接硬塞进图表。
+- 趋势图重点看时间顺序，对比图重点看排序和标签清晰度。
+- Excel 图表默认样式常常太花，正式汇报前最好删掉多余装饰。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 9 章可视化主题，以及《Microsoft Excel 365 Bible》第 17 至 20 章图表与可视化主题。  
+**最后复核日期**：2026-04-08

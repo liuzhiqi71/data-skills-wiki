@@ -1,0 +1,76 @@
+---
+title: "案例库"
+---
+
+## 这个页面解决什么问题
+
+如果你不想先查函数，而是想直接看一个完整的小工作场景，可以从这里进入。
+
+## 工作流案例
+
+### 案例 1：月度销售周报
+
+- 原始数据：业务系统导出的 CSV
+- 主要任务：读取文件、处理日期、按地区汇总、做透视分析
+- 先看页面：
+- [读取 CSV / Excel](../scenes/read-csv-excel.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+- [透视表与交叉分析](../scenes/pivot-analysis.qmd)
+
+### 案例 2：客户名单清洗
+
+- 原始数据：Excel 名单，缺失值和重复值较多
+- 主要任务：补空值、识别异常、标准化字段
+- 先看页面：
+- [清洗缺失值和异常值](../scenes/missing-values.qmd)
+- [筛选、排序、去重](../scenes/filter-sort-dedup.qmd)
+
+### 案例 3：账期与回款跟踪
+
+- 原始数据：订单表 + 回款表
+- 主要任务：统一日期、按月汇总、看月底余额
+- 先看页面：
+- [时间日期处理](../scenes/date-time.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+
+## 书中案例入口
+
+- [Python 案例：Bitly 日志时区分析](bitly-log-analysis.qmd)
+- [Python 案例：MovieLens 评分差异分析](movielens-rating-analysis.qmd)
+- [Python 案例：婴儿名字长期趋势分析](baby-names-trend-analysis.qmd)
+- [Excel 实战案例：周报模板、图表和打印包](excel-report-pack.qmd)
+- [Python 案例：从 API 抓取到特征表](python-web-to-model.qmd)
+- [Python 实战案例：分类、层次索引与统计起手式](python-analysis-patterns.qmd)
+- [Python 书中案例：Bitly、MovieLens、Baby Names 等](python-book-examples.qmd)
+- [Excel 书中工作流：清洗、透视、Power Query、图表](excel-analysis-workflows.qmd)
+
+## 深入专题入口
+
+- [Python 专题：时间序列与滚动窗口](../python/time-series-windows.qmd)
+- [Python 专题：JSON、API 与网页表格抓取实战](../python/json-api-html-practice.qmd)
+- [Python 专题：时间序列业务案例](../python/time-series-business-cases.qmd)
+- [Python 专题：建模前特征工程实战](../python/feature-engineering-practice.qmd)
+- [Python 专题：字符串与正则实战](../python/string-regex-practice.qmd)
+- [Python 专题：GroupBy / apply 实战配方](../python/groupby-apply-recipes.qmd)
+- [Excel 专题：选图、改图与汇报图表实战](../excel/chart-reporting-practice.qmd)
+- [Excel 专题：外部数据连接与刷新实战](../excel/external-data-refresh-practice.qmd)
+- [Excel 专题：形状、图片与报表润色实战](../excel/shapes-images-report-polish.qmd)
+- [Excel 专题：迷你图、数字格式与表内可视化](../excel/sparklines-number-format-practice.qmd)
+- [Excel 专题：模板与打印实战](../excel/template-printing-practice.qmd)
+- [Excel 专题：数据验证实战](../excel/data-validation-patterns.qmd)
+- [Excel 专题：VBA 自定义函数实战](../excel/vba-custom-functions-practice.qmd)
+- [Excel 专题：控件、事件与交互工作表](../excel/controls-events-practice.qmd)
+- [Excel 专题：Add-In 打包与分发实战](../excel/addins-packaging-practice.qmd)
+- [Excel 专题：Power Query 深入](../excel/power-query-deep-dive.qmd)
+- [Excel 专题：Power Pivot 与数据模型](../excel/power-pivot.qmd)
+- [Excel 专题：假设分析、目标求解与 Solver](../excel/what-if-solver.qmd)
+- [Excel 专题：自动化、VBA 与 Office Scripts](../excel/excel-automation.qmd)
+
+## 使用建议
+
+先从一个最接近你当前工作的案例进入，再跳回具体场景页和索引页。
+
+---
+
+**来源映射**：基于常见办公与分析任务整理的原创案例入口。  
+**最后复核日期**：2026-04-08

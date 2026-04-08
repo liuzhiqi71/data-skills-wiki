@@ -1,0 +1,32 @@
+---
+title: "Excel 实战案例：周报模板、图表和打印包"
+---
+
+## 这个页面解决什么问题
+
+把一份给老板或客户看的 Excel 周报做成可复用“报表包”：录入稳、图表清楚、打印不乱、下周还能直接复用。
+
+## 推荐流程
+
+1. 原始数据页做成 Table。
+2. 汇总页用透视表或公式产出核心指标。
+3. 图表页只放关键结论图。
+4. 打印页固定版式、页眉页脚和分页。
+
+## 关键页面
+
+- [Excel 专题：工作簿、区域与表格](../excel/workbook-ranges-tables.qmd)
+- [Excel 专题：数据验证实战](../excel/data-validation-patterns.qmd)
+- [Excel 专题：选图、改图与汇报图表实战](../excel/chart-reporting-practice.qmd)
+- [Excel 专题：模板与打印实战](../excel/template-printing-practice.qmd)
+
+## 典型坑
+
+- 原始数据和报表混在一张表里。
+- 图表没排序、没标题、没重点标注。
+- 打印时列宽溢出，标题行不能重复。
+
+---
+
+**来源映射**：综合《Microsoft Excel 365 Bible》中表格、图表、打印和数据验证的高频工作流。  
+**最后复核日期**：2026-04-08

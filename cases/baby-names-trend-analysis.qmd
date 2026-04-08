@@ -1,0 +1,56 @@
+---
+title: "Python 案例：婴儿名字长期趋势分析"
+---
+
+## 这个页面解决什么问题
+
+如果你要做跨很多年份的长期趋势分析，而不是只看某一个月或某一个季度，这个案例能帮你把“按年堆叠的明细文件”整理成趋势表。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+pieces = []
+for year in range(2010, 2021):
+    frame = pd.read_csv(f"names/yob{year}.txt", names=["name", "sex", "births"])
+    frame["year"] = year
+    pieces.append(frame)
+
+names = pd.concat(pieces, ignore_index=True)
+
+trend = (
+    names[names["name"].isin(["Emma", "Olivia", "Liam"])]
+    .pivot_table(values="births", index="year", columns="name", aggfunc="sum")
+)
+```
+
+## 真实使用场景
+
+- 品牌词或关键词长期热度分析。
+- SKU、类目或渠道的多年变化趋势。
+- 人群偏好迁移：看一个类别在不同年份是否持续上升或衰退。
+
+## 这个案例练什么
+
+- 批量读取同结构文件
+- 追加年份字段
+- 长周期分组和透视
+- 用可视化看趋势，而不是只看单点排名
+
+## 对应页面
+
+- [时间日期处理](../scenes/date-time.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+- [可视化与图表](../scenes/visualization-charts.qmd)
+- [Python 专题：时间序列业务案例](../python/time-series-business-cases.qmd)
+
+## 注意事项
+
+- 多年份文件最怕列结构不一致，拼接前先检查字段名和编码。
+- 长期趋势分析先看绝对量，再决定要不要转成占比或排名。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 13.3 节 US Baby Names 1880–2010。  
+**最后复核日期**：2026-04-08

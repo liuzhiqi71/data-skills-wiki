@@ -1,0 +1,102 @@
+---
+title: "Excel 索引：高频公式与分析动作"
+---
+
+## 这个页面解决什么问题
+
+当你知道要在 Excel 里解决问题，但想不起用哪类公式时，用这一页先定位。
+
+## 查找引用
+
+| 公式 | 用途 | 最短示例 | 常见搭配 |
+| --- | --- | --- | --- |
+| `XLOOKUP()` | 查找并返回结果 | `=XLOOKUP(A2,$H:$H,$I:$I,"未找到")` | 精确匹配、默认值 |
+| `INDEX()+MATCH()` | 兼容老版本的查找组合 | `=INDEX($I:$I,MATCH(A2,$H:$H,0))` | 多条件拼接辅助列 |
+
+## 文本
+
+| 公式 | 用途 | 最短示例 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| `TEXTSPLIT()` | 拆分文本 | `=TEXTSPLIT(A2,",")` | 后续文本专题 |
+| `TEXTJOIN()` | 拼接文本 | `=TEXTJOIN("-",TRUE,A2:C2)` | 后续文本专题 |
+| `LEFT()/RIGHT()/MID()` | 截取文本 | `=LEFT(A2,3)` | 后续文本专题 |
+| `TEXTBEFORE()/TEXTAFTER()` | 取分隔符前后文本 | `=TEXTBEFORE(A2,"@")` | [文本拆分与提取](../scenes/text-extract.qmd) |
+| `TRIM()/CLEAN()` | 清理空格和异常字符 | `=TRIM(CLEAN(A2))` | [文本拆分与提取](../scenes/text-extract.qmd) |
+
+## 日期时间
+
+| 公式 | 用途 | 最短示例 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| `TEXT()` | 格式化日期显示 | `=TEXT(A2,"yyyy-mm")` | [时间日期处理](../scenes/date-time.qmd) |
+| `DATE()` | 构造日期 | `=DATE(2026,4,8)` | [时间日期处理](../scenes/date-time.qmd) |
+| `EOMONTH()` | 取月底日期 | `=EOMONTH(A2,0)` | [时间日期处理](../scenes/date-time.qmd) |
+| `WEEKDAY()` | 取星期序号 | `=WEEKDAY(A2,2)` | [时间日期处理](../scenes/date-time.qmd) |
+
+## 逻辑
+
+| 公式 | 用途 | 最短示例 | 常见坑 |
+| --- | --- | --- | --- |
+| `IF()` | 条件判断 | `=IF(B2>0,"有值","空")` | 分支过长时可读性差 |
+| `IFERROR()` | 捕获错误 | `=IFERROR(C2/D2,0)` | 不要掩盖真实数据问题 |
+| `IFS()` | 多条件判断 | `=IFS(B2>=90,"A",B2>=80,"B")` | 规则过多时更适合辅助表 |
+
+## 聚合统计
+
+| 公式 | 用途 | 最短示例 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| `SUMIFS()` | 条件求和 | `=SUMIFS($D:$D,$A:$A,G2)` | [分组统计与汇总](../scenes/group-summary.qmd) |
+| `COUNTIFS()` | 条件计数 | `=COUNTIFS($A:$A,G2,$B:$B,H2)` | [分组统计与汇总](../scenes/group-summary.qmd) |
+| `AVERAGEIFS()` | 条件平均 | `=AVERAGEIFS($D:$D,$A:$A,G2)` | [分组统计与汇总](../scenes/group-summary.qmd) |
+
+## 动态数组
+
+| 公式 | 用途 | 最短示例 | 常见搭配 |
+| --- | --- | --- | --- |
+| `FILTER()` | 筛出符合条件的行 | `=FILTER(A2:D100,D2:D100>1000)` | 与 `SORT()` 联用 |
+| `SORT()` | 排序结果数组 | `=SORT(A2:D100,4,-1)` | 与 `FILTER()` 联用 |
+| `UNIQUE()` | 去重 | `=UNIQUE(A2:A100)` | 构造字典表 |
+
+## 常用分析动作
+
+| 动作 | 用途 | 最短路径 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| 数据透视表 | 交叉汇总 | `插入 -> 数据透视表` | [透视表与交叉分析](../scenes/pivot-analysis.qmd) |
+| PivotChart | 透视图 | `透视表分析 -> PivotChart` | [可视化与图表](../scenes/visualization-charts.qmd) |
+| Text to Columns | 分列 | `数据 -> 分列` | [文本拆分与提取](../scenes/text-extract.qmd) |
+| Flash Fill | 模式填充 | `数据 -> Flash Fill` | [文本拆分与提取](../scenes/text-extract.qmd) |
+| Power Query Merge | 查询合并 | `Power Query -> Merge` | [查找匹配与关联](../scenes/lookup-join.qmd) |
+| 导出 CSV/TXT | 对外输出 | `文件 -> 另存为` | [导出报表](../scenes/export-report.qmd) |
+
+## 对照入口
+
+- 如果你想按书的 Part / Chapter 看主题，去 [Excel 书籍地图](book-map.qmd)。
+- 进阶专题：
+- [Excel 专题：工作簿、区域与表格](workbook-ranges-tables.qmd)
+- [Excel 专题：界面、快捷操作与提效](interface-shortcuts-productivity.qmd)
+- [Excel 专题：批注、备注与协作标记实战](comments-notes-practice.qmd)
+- [Excel 专题：公式模式与高频写法](formula-patterns.qmd)
+- [Excel 专题：动态数组与数组公式实战](dynamic-array-practice.qmd)
+- [Excel 专题：条件格式实战](conditional-formatting-practice.qmd)
+- [Excel 专题：数据验证与保护](data-validation-protection.qmd)
+- [Excel 专题：数据验证实战](data-validation-patterns.qmd)
+- [Excel 专题：保护、检查与交付实战](protection-sharing-practice.qmd)
+- [Excel 专题：外部数据连接与刷新实战](external-data-refresh-practice.qmd)
+- [Excel 专题：选图、改图与汇报图表实战](chart-reporting-practice.qmd)
+- [Excel 专题：形状、图片与报表润色实战](shapes-images-report-polish.qmd)
+- [Excel 专题：迷你图、数字格式与表内可视化](sparklines-number-format-practice.qmd)
+- [Excel 专题：分组大纲与结构化报表](outlines-structured-reporting.qmd)
+- [Excel 专题：模板与打印实战](template-printing-practice.qmd)
+- [Excel 专题：链接与汇总](linking-consolidation.qmd)
+- [Excel 专题：Analysis ToolPak](analysis-toolpak.qmd)
+- [Excel 专题：Power Query 深入](power-query-deep-dive.qmd)
+- [Excel 专题：Power Pivot 与数据模型](power-pivot.qmd)
+- [Excel 专题：假设分析、目标求解与 Solver](what-if-solver.qmd)
+- [Excel 专题：自动化、VBA 与 Office Scripts](excel-automation.qmd)
+- [Excel 专题：VBA 自定义函数实战](vba-custom-functions-practice.qmd)
+- [Excel 专题：控件、事件与交互工作表](controls-events-practice.qmd)
+- [Excel 专题：Add-In 打包与分发实战](addins-packaging-practice.qmd)
+
+---
+
+**来源映射**：以《Microsoft Excel 365 Bible, 2nd Edition》中的高频函数与分析任务重组为索引。  
+**最后复核日期**：2026-04-08

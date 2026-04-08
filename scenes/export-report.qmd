@@ -1,0 +1,49 @@
+---
+title: "导出报表"
+---
+
+## 这个页面解决什么问题
+
+把清洗和分析结果稳定导出给别人用，避免“我本地看没问题，对方打开全乱了”。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+summary.to_csv("monthly_summary.csv", index=False, encoding="utf-8-sig")
+
+with pd.ExcelWriter("weekly_pack.xlsx") as writer:
+    summary.to_excel(writer, sheet_name="summary", index=False)
+    detail.to_excel(writer, sheet_name="detail", index=False)
+```
+
+### Excel
+
+1. 对外发纯数据：`文件 -> 另存为 -> CSV UTF-8`
+2. 发格式化报表：保留 `.xlsx`
+3. 发不可编辑版本：导出为 PDF 或打印版式
+:::
+
+## 真实使用场景
+
+- 给 BI 或别的系统喂数据：导出 CSV，字段名和编码要稳。
+- 给管理层发周报：一个 Excel 文件里放摘要页和明细页。
+- 给外部客户或供应商发只读结果：导出 PDF，防止格式跑掉。
+
+## 相关函数/公式
+
+- Python：`to_csv()`、`to_excel()`、`ExcelWriter`
+- Excel：另存为 CSV/TXT、打印设置、模板文件、工作表保护
+
+## 注意事项
+
+- 中文 CSV 给 Windows 用户时，`utf-8-sig` 往往更省事。
+- 导出前先确认日期、金额、百分比格式，不要把显示格式和实际值混淆。
+- 如果文件要反复复用，优先把导出步骤写成固定流程，而不是每次手工点。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 6 章文本/Excel 输出主题，以及《Microsoft Excel 365 Bible》第 21 章导出数据与早期章节中的文件/打印工作流。  
+**最后复核日期**：2026-04-08

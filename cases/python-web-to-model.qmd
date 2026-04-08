@@ -1,0 +1,66 @@
+---
+title: "Python 案例：从 API 抓取到特征表"
+---
+
+## 这个页面解决什么问题
+
+如果你要把在线业务数据直接拉下来，清洗成能分析、能建模、能导出的特征表，这一页给你一个完整但轻量的工作流。
+
+## 工作流骨架
+
+1. 从 API 抓原始 JSON。
+2. 用 `json_normalize()` 摊平成明细表。
+3. 统一时间列、主键和分类字段。
+4. 做分组汇总、滚动指标和滞后特征。
+5. 输出一个分析表，一个建模表。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+import requests
+
+rows = requests.get("https://api.example.com/orders", timeout=20).json()["data"]
+
+base = (
+    pd.json_normalize(rows)
+      .assign(order_date=lambda x: pd.to_datetime(x["order_date"]))
+      .sort_values(["store_id", "order_date"])
+)
+
+daily = (
+    base.groupby(["store_id", pd.Grouper(key="order_date", freq="D")])["sales"]
+        .sum()
+        .rename("sales")
+        .reset_index()
+)
+
+daily["sales_ma7"] = (
+    daily.groupby("store_id")["sales"]
+         .transform(lambda s: s.rolling(7, min_periods=1).mean())
+)
+```
+
+## 真实使用场景
+
+- 电商运营：每天拉订单接口，生成门店级日销、7 日均值和活动滞后特征。
+- SaaS 分析：抓订阅事件流，摊平成客户日表，再做流失预警输入表。
+- 投放复盘：把广告平台接口和订单表拼起来，生成带渠道、地区、时间维度的分析样本。
+
+## 先看哪些专题页
+
+- [Python 专题：JSON、API 与网页表格抓取实战](../python/json-api-html-practice.qmd)
+- [Python 专题：时间序列业务案例](../python/time-series-business-cases.qmd)
+- [Python 专题：建模前特征工程实战](../python/feature-engineering-practice.qmd)
+- [Python 专题：建模库接口感](../python/modeling-libraries.qmd)
+
+## 注意事项
+
+- 抓数、清洗、建特征最好拆成三个步骤，方便补跑和排错。
+- 同一张表里同时服务“看报表”和“喂模型”会越来越乱，尽早拆层。
+- API 返回字段改名后最容易静默出错，关键列要加校验。
+
+---
+
+**来源映射**：综合《Python for Data Analysis》第 6、11、12 章的接口读取、时间序列和建模前处理主题。  
+**最后复核日期**：2026-04-08

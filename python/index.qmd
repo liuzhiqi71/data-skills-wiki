@@ -1,0 +1,96 @@
+---
+title: "Python 索引：pandas 高频函数"
+---
+
+## 这个页面解决什么问题
+
+当你已经知道自己要查 `pandas` 或 `NumPy`，但忘了具体写法时，用这一页快速回忆。
+
+## 读取与预览
+
+| 函数/方法 | 用途 | 最短示例 | 常见搭配 | 去哪里看场景 |
+| --- | --- | --- | --- | --- |
+| `pd.read_csv()` | 读取 CSV | `pd.read_csv("a.csv")` | `usecols` `dtype` `parse_dates` | [读取 CSV / Excel](../scenes/read-csv-excel.qmd) |
+| `pd.read_excel()` | 读取 Excel | `pd.read_excel("a.xlsx")` | `sheet_name` `usecols` | [读取 CSV / Excel](../scenes/read-csv-excel.qmd) |
+| `head()` | 看前几行 | `df.head()` | `info()` `sample()` | 同页速查 |
+| `to_csv()` | 导出 CSV | `df.to_csv("out.csv", index=False)` | `encoding` | [导出报表](../scenes/export-report.qmd) |
+| `to_excel()` | 导出 Excel | `df.to_excel("out.xlsx", index=False)` | `ExcelWriter` | [导出报表](../scenes/export-report.qmd) |
+
+## 清洗与筛选
+
+| 函数/方法 | 用途 | 最短示例 | 常见坑 | 去哪里看场景 |
+| --- | --- | --- | --- | --- |
+| `fillna()` | 补缺失值 | `df["x"].fillna(0)` | 不要把“空白”和“0”混掉 | [清洗缺失值和异常值](../scenes/missing-values.qmd) |
+| `dropna()` | 删除缺失记录 | `df.dropna()` | 默认会丢整行 | [清洗缺失值和异常值](../scenes/missing-values.qmd) |
+| `query()` | 条件筛选 | `df.query("amount > 100")` | 列名有空格时不方便 | [清洗缺失值和异常值](../scenes/missing-values.qmd) |
+| `sort_values()` | 排序 | `df.sort_values("amount")` | 升降序别看错 | [分组统计与汇总](../scenes/group-summary.qmd) |
+| `drop_duplicates()` | 去重 | `df.drop_duplicates()` | 先确认唯一键 | [筛选、排序、去重](../scenes/filter-sort-dedup.qmd) |
+| `isin()` | 多值筛选 | `df[df["city"].isin(["SZ","SH"])]` | 与 `~` 联用排除 | [筛选、排序、去重](../scenes/filter-sort-dedup.qmd) |
+
+## 汇总与重塑
+
+| 函数/方法 | 用途 | 最短示例 | 常见搭配 | 去哪里看场景 |
+| --- | --- | --- | --- | --- |
+| `groupby()` | 分组 | `df.groupby("region")` | `agg()` `size()` | [分组统计与汇总](../scenes/group-summary.qmd) |
+| `agg()` | 多指标聚合 | `.agg(total=("amount","sum"))` | 同时做 `count/sum/mean` | [分组统计与汇总](../scenes/group-summary.qmd) |
+| `pd.pivot_table()` | 透视分析 | `pd.pivot_table(df, ...)` | `fill_value` `margins` | [透视表与交叉分析](../scenes/pivot-analysis.qmd) |
+| `merge()` | 表连接 | `left.merge(right, on="id", how="left")` | `indicator` `validate` | [查找匹配与关联](../scenes/lookup-join.qmd) |
+| `concat()` | 拼接数据 | `pd.concat([a,b], ignore_index=True)` | 行拼接最常用 | [查找匹配与关联](../scenes/lookup-join.qmd) |
+| `melt()` | 宽表转长表 | `df.melt(id_vars="id")` | 配合透视和作图 | [查找匹配与关联](../scenes/lookup-join.qmd) |
+
+## 日期时间
+
+| 函数/方法 | 用途 | 最短示例 | 常见搭配 | 去哪里看场景 |
+| --- | --- | --- | --- | --- |
+| `pd.to_datetime()` | 转日期类型 | `pd.to_datetime(df["d"])` | `errors="coerce"` | [时间日期处理](../scenes/date-time.qmd) |
+| `.dt` | 提取日期属性 | `df["d"].dt.month` | `strftime()` `to_period()` | [时间日期处理](../scenes/date-time.qmd) |
+
+## 字符串与文本提取
+
+| 函数/方法 | 用途 | 最短示例 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| `str.split()` | 分隔文本 | `df["sku"].str.split("-")` | [文本拆分与提取](../scenes/text-extract.qmd) |
+| `str.extract()` | 正则提取 | `df["url"].str.extract(r"https?://([^/]+)")` | [文本拆分与提取](../scenes/text-extract.qmd) |
+| `str.replace()` | 替换文本 | `df["phone"].str.replace("-", "", regex=False)` | [文本拆分与提取](../scenes/text-extract.qmd) |
+
+## 可视化
+
+| 函数/方法 | 用途 | 最短示例 | 去哪里看场景 |
+| --- | --- | --- | --- |
+| `plot.line()` | 趋势图 | `df.plot.line(x="month", y="sales")` | [可视化与图表](../scenes/visualization-charts.qmd) |
+| `plot.bar()` | 分类对比 | `df.plot.bar(x="region", y="sales")` | [可视化与图表](../scenes/visualization-charts.qmd) |
+| `plot.hist()` | 分布 | `df["amount"].plot.hist(bins=20)` | [可视化与图表](../scenes/visualization-charts.qmd) |
+
+## NumPy 常用补充
+
+| 函数 | 用途 | 最短示例 |
+| --- | --- | --- |
+| `np.where()` | 条件赋值 | `np.where(df["x"] > 0, "Y", "N")` |
+| `np.select()` | 多条件分类 | `np.select(conditions, choices, default="other")` |
+| `np.nan` | 缺失值占位 | `df["x"].replace("", np.nan)` |
+
+## 对照入口
+
+- 如果你想按书的章节看主题，而不是按函数查，去 [Python 书籍地图](book-map.qmd)。
+- 进阶专题：
+- [Python 专题：基础工作流与 Jupyter](fundamentals-jupyter.qmd)
+- [Python 专题：数据加载、API 与数据库](data-loading-apis.qmd)
+- [Python 专题：JSON、API 与网页表格抓取实战](json-api-html-practice.qmd)
+- [Python 专题：清洗、合并与重塑](data-cleaning-wrangling.qmd)
+- [Python 专题：字符串与正则实战](string-regex-practice.qmd)
+- [Python 专题：重塑与透视实战](reshape-pivot-recipes.qmd)
+- [Python 专题：GroupBy / apply 实战配方](groupby-apply-recipes.qmd)
+- [Python 专题：分类数据实战](categorical-data-practice.qmd)
+- [Python 专题：层次索引实战](hierarchical-indexing-practice.qmd)
+- [Python 专题：统计摘要、相关性与小分析](stats-correlation-practice.qmd)
+- [Python 专题：时间序列与滚动窗口](time-series-windows.qmd)
+- [Python 专题：时间序列业务案例](time-series-business-cases.qmd)
+- [Python 专题：建模库接口感](modeling-libraries.qmd)
+- [Python 专题：建模前特征工程实战](feature-engineering-practice.qmd)
+- [Python 专题：Advanced NumPy 与性能](advanced-numpy-performance.qmd)
+- [Python 专题：IPython / Jupyter 提效](ipython-productivity.qmd)
+
+---
+
+**来源映射**：以《Python for Data Analysis, 3rd Edition》中的高频操作为索引重组，不做完整 API 镜像。  
+**最后复核日期**：2026-04-08

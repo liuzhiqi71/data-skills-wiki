@@ -1,0 +1,54 @@
+---
+title: "Python 专题：JSON、API 与网页表格抓取实战"
+---
+
+## 这个页面解决什么问题
+
+当数据不在本地 Excel 或 CSV 里，而是躺在接口返回的 JSON、网页表格或嵌套结构里时，这一页给你一套能尽快落地的抓取起手式。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+import requests
+
+resp = requests.get(
+    "https://api.example.com/orders",
+    params={"date": "2026-04-08", "page": 1},
+    timeout=20,
+)
+resp.raise_for_status()
+
+rows = resp.json()["data"]
+orders = pd.json_normalize(rows)
+
+web_tables = pd.read_html("https://example.com/report")
+report = web_tables[0]
+```
+
+## 真实使用场景
+
+- 从业务 API 拉日订单、用户、投放和库存数据，再转成 `DataFrame` 继续清洗。
+- 从公开网页读财务表、榜单或运营日报，把页面表格变成结构化数据。
+- 接嵌套 JSON 时，用 `json_normalize()` 把多层字段摊平，避免后面写一堆手动循环。
+
+## 相关函数/公式
+
+- `requests.get()` / `raise_for_status()`
+- `response.json()`
+- `pd.json_normalize()`
+- `pd.read_json()`
+- `pd.read_html()`
+- `assign()` / `explode()` / `merge()`
+
+## 注意事项
+
+- 先看接口是否分页，别只抓第一页就开始分析。
+- JSON 字段层级经常变化，落地前先打印列名确认摊平结果。
+- 网页表格最脆弱，页面改版后优先检查列顺序和表头是否变了。
+- 抓外部数据时要留时间戳、主键和来源字段，方便后续增量更新。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 6.1 节中的 JSON Data、XML and HTML: Web Scraping，以及第 6.3 节 Interacting with Web APIs。  
+**最后复核日期**：2026-04-08

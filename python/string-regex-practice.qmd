@@ -1,0 +1,42 @@
+---
+title: "Python 专题：字符串与正则实战"
+---
+
+## 这个页面解决什么问题
+
+当原始数据里混着邮箱、URL、地址、备注、SKU、手机号、带噪文本时，最常见的第一步不是建模，而是把字符串拆干净。
+
+## 最小可用示例
+
+```python
+df["email_domain"] = df["email"].str.extract(r"@(.+)$")
+df["sku_prefix"] = df["sku"].str.extract(r"^([A-Z]+)")
+df["clean_phone"] = df["phone"].str.replace(r"\\D+", "", regex=True)
+df["note"] = df["note"].str.replace(r"\\s+", " ", regex=True).str.strip()
+```
+
+## 实战场景
+
+- 从邮箱提取域名和公司标识。
+- 从商品编码里提取前缀、批次或颜色码。
+- 清理备注里的多余空格、换行和奇怪字符。
+- 从 URL 中提取主域名或路径片段。
+
+## 相关方法
+
+- `str.extract()`
+- `str.contains()`
+- `str.replace()`
+- `str.split()`
+- `re` 正则表达式
+
+## 注意事项
+
+- 正则先写最小匹配规则，再慢慢加复杂度。
+- 对文本列做批量清洗前，先抽样看 20 到 50 行最脏的数据。
+- 纯文本替换时优先 `regex=False`，需要模式匹配时再开正则。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 7 章中 Python 字符串方法、正则表达式和 pandas 字符串函数的实战主题。  
+**最后复核日期**：2026-04-08

@@ -1,0 +1,131 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "scenes/*.qmd"
+    - "python/*.qmd"
+    - "excel/*.qmd"
+    - "compare/*.qmd"
+    - "cases/*.qmd"
+    - "!templates/*.qmd"
+
+website:
+  title: "数据分析参考书 Wiki"
+  search: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: 首页
+      - href: start-here.qmd
+        text: 开始使用
+      - href: scenes/index.qmd
+        text: 按场景查
+      - href: python/index.qmd
+        text: Python 索引
+      - href: excel/index.qmd
+        text: Excel 索引
+      - href: compare/python-vs-excel.qmd
+        text: Python vs Excel
+      - href: cases/index.qmd
+        text: 案例库
+      - href: updates.qmd
+        text: 更新日志
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: "开始"
+        contents:
+          - index.qmd
+          - start-here.qmd
+      - section: "按场景查"
+        contents:
+          - scenes/index.qmd
+          - scenes/read-csv-excel.qmd
+          - scenes/missing-values.qmd
+          - scenes/filter-sort-dedup.qmd
+          - scenes/group-summary.qmd
+          - scenes/pivot-analysis.qmd
+          - scenes/date-time.qmd
+          - scenes/text-extract.qmd
+          - scenes/lookup-join.qmd
+          - scenes/visualization-charts.qmd
+          - scenes/export-report.qmd
+      - section: "Python"
+        contents:
+          - python/index.qmd
+          - python/book-map.qmd
+          - python/fundamentals-jupyter.qmd
+          - python/data-loading-apis.qmd
+          - python/json-api-html-practice.qmd
+          - python/data-cleaning-wrangling.qmd
+          - python/string-regex-practice.qmd
+          - python/reshape-pivot-recipes.qmd
+          - python/groupby-apply-recipes.qmd
+          - python/categorical-data-practice.qmd
+          - python/hierarchical-indexing-practice.qmd
+          - python/stats-correlation-practice.qmd
+          - python/time-series-windows.qmd
+          - python/time-series-business-cases.qmd
+          - python/modeling-libraries.qmd
+          - python/feature-engineering-practice.qmd
+          - python/advanced-numpy-performance.qmd
+          - python/ipython-productivity.qmd
+      - section: "Excel"
+        contents:
+          - excel/index.qmd
+          - excel/book-map.qmd
+          - excel/workbook-ranges-tables.qmd
+          - excel/interface-shortcuts-productivity.qmd
+          - excel/formula-patterns.qmd
+          - excel/dynamic-array-practice.qmd
+          - excel/conditional-formatting-practice.qmd
+          - excel/data-validation-protection.qmd
+          - excel/data-validation-patterns.qmd
+          - excel/comments-notes-practice.qmd
+          - excel/protection-sharing-practice.qmd
+          - excel/linking-consolidation.qmd
+          - excel/external-data-refresh-practice.qmd
+          - excel/chart-reporting-practice.qmd
+          - excel/shapes-images-report-polish.qmd
+          - excel/sparklines-number-format-practice.qmd
+          - excel/outlines-structured-reporting.qmd
+          - excel/template-printing-practice.qmd
+          - excel/analysis-toolpak.qmd
+          - excel/power-query-deep-dive.qmd
+          - excel/power-pivot.qmd
+          - excel/what-if-solver.qmd
+          - excel/excel-automation.qmd
+          - excel/vba-custom-functions-practice.qmd
+          - excel/controls-events-practice.qmd
+          - excel/addins-packaging-practice.qmd
+      - section: "对照与案例"
+        contents:
+          - compare/python-vs-excel.qmd
+          - cases/index.qmd
+          - cases/bitly-log-analysis.qmd
+          - cases/movielens-rating-analysis.qmd
+          - cases/baby-names-trend-analysis.qmd
+          - cases/excel-report-pack.qmd
+          - cases/python-web-to-model.qmd
+          - cases/python-analysis-patterns.qmd
+          - cases/python-book-examples.qmd
+          - cases/excel-analysis-workflows.qmd
+          - updates.qmd
+  page-footer:
+    left: "公开站点只保留原创总结、示例和索引，不复刻原书内容。"
+    right: "Built with Quarto"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 2
+    code-copy: true
+    smooth-scroll: true
+    anchor-sections: true
+    link-external-newwindow: true
+
+lang: zh

@@ -1,0 +1,55 @@
+---
+title: "数据分析参考书 Wiki"
+---
+
+这是一个面向日常工作的数据分析速查站。重点不是系统授课，而是把高频问题拆成一页页能直接拿来用的参考卡片：给你最小示例、真实小场景、相关函数/公式和常见坑。
+
+::: {.hero-block}
+## 你可以从这几个入口开始
+
+- 想解决具体问题：去 [按场景查](scenes/index.qmd)
+- 已经知道工具名：去 [Python 索引](python/index.qmd) 或 [Excel 索引](excel/index.qmd)
+- 想判断该用哪种工具：去 [Python vs Excel](compare/python-vs-excel.qmd)
+:::
+
+::: {.grid}
+::: {.g-col-12 .g-col-md-6}
+### 按场景查
+
+- [读取 CSV / Excel](scenes/read-csv-excel.qmd)
+- [清洗缺失值和异常值](scenes/missing-values.qmd)
+- [筛选、排序、去重](scenes/filter-sort-dedup.qmd)
+- [分组统计与汇总](scenes/group-summary.qmd)
+- [透视表与交叉分析](scenes/pivot-analysis.qmd)
+- [时间日期处理](scenes/date-time.qmd)
+- [文本拆分与提取](scenes/text-extract.qmd)
+- [查找匹配与关联](scenes/lookup-join.qmd)
+- [可视化与图表](scenes/visualization-charts.qmd)
+- [导出报表](scenes/export-report.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### 高频入口
+
+- [开始使用](start-here.qmd)
+- [pandas 高频函数](python/index.qmd)
+- [Excel 高频公式](excel/index.qmd)
+- [Python 书籍地图](python/book-map.qmd)
+- [Excel 书籍地图](excel/book-map.qmd)
+- [同一任务的 Python / Excel 做法](compare/python-vs-excel.qmd)
+- [案例库](cases/index.qmd)
+:::
+:::
+
+## 这个站怎么用
+
+1. 先用中文场景名搜索，比如“缺失值”“透视表”“日期”“文本提取”。
+2. 进页面后先看“最小可用示例”，确认你要的是哪种解法。
+3. 再看“真实使用场景”和“相关函数/公式”，把相邻做法一并记住。
+
+## 这批首发内容覆盖什么
+
+- Python 部分聚焦 `pandas` 和常用 `NumPy` 操作。
+- Excel 部分聚焦高频公式、透视分析和常见清洗动作。
+- 公共页面优先覆盖工作里最常见的数据导入、清洗、汇总和对比任务。
+- 新增书籍地图页，用来把 PDF 里的章节主题映射到这个站的场景页和索引页。

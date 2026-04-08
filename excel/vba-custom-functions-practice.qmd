@@ -1,0 +1,52 @@
+---
+title: "Excel 专题：VBA 自定义函数实战"
+---
+
+## 这个页面解决什么问题
+
+当一个业务公式反复出现、普通内置函数写起来又过长时，可以把它封装成自定义函数，像普通 Excel 函数一样调用。
+
+## 最小可用示例
+
+```vb
+Function GradeLevel(score As Double) As String
+    If score >= 90 Then
+        GradeLevel = "A"
+    ElseIf score >= 80 Then
+        GradeLevel = "B"
+    Else
+        GradeLevel = "C"
+    End If
+End Function
+```
+
+工作表里可直接写：
+
+```text
+=GradeLevel(A2)
+```
+
+## 实战场景
+
+- 把重复出现的业务等级判断封装起来。
+- 把复杂格式化规则做成一个函数返回结果。
+- 让非技术同事也能像用普通公式一样调用你的规则。
+
+## 相关主题
+
+- VBA `Function`
+- 参数
+- Range 参数
+- 调试
+- 插入自定义函数
+
+## 注意事项
+
+- 自定义函数适合纯计算，不适合到处改工作表状态。
+- 先把业务规则写清楚，再封成函数。
+- 共享给别人时，要考虑宏启用和信任设置。
+
+---
+
+**来源映射**：对应《Microsoft Excel 365 Bible》第 39 章 Creating Custom Worksheet Functions 的实战主题。  
+**最后复核日期**：2026-04-08

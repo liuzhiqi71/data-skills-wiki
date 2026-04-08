@@ -1,0 +1,36 @@
+---
+title: "按场景查"
+---
+
+## 场景目录
+
+先按任务找页面，再回头记函数/公式。
+
+### 已完成
+
+- [读取 CSV / Excel](read-csv-excel.qmd)
+- [清洗缺失值和异常值](missing-values.qmd)
+- [筛选、排序、去重](filter-sort-dedup.qmd)
+- [分组统计与汇总](group-summary.qmd)
+- [透视表与交叉分析](pivot-analysis.qmd)
+- [时间日期处理](date-time.qmd)
+- [文本拆分与提取](text-extract.qmd)
+- [查找匹配与关联](lookup-join.qmd)
+- [可视化与图表](visualization-charts.qmd)
+- [导出报表](export-report.qmd)
+
+## 怎么用这些场景页
+
+- 先看“最小可用示例”，确认写法或操作路径。
+- 再看“真实使用场景”，判断能不能直接套到自己的数据上。
+- 最后记住“相关函数/公式”，方便下次直接搜工具名。
+
+## 和书的关系
+
+- Python 场景主要对应《Python for Data Analysis》里“读写、清洗、合并、重塑、可视化、聚合、时间序列、案例分析”这些主题。
+- Excel 场景主要对应《Microsoft Excel 365 Bible》里“公式、图表、数据清洗、透视表、Power Query、导出”这些主题。
+
+---
+
+**来源映射**：基于两本参考书的高频工作场景重组。  
+**最后复核日期**：2026-04-08

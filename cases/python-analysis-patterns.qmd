@@ -1,0 +1,32 @@
+---
+title: "Python 实战案例：分类、层次索引与统计起手式"
+---
+
+## 这个页面解决什么问题
+
+当你拿到一张新表，不知道先做什么时，这个起手式可以帮你在 10 到 20 分钟内把数据的结构、类别、层次和统计轮廓摸清楚。
+
+## 推荐流程
+
+1. `head()` / `info()` 看字段类型。
+2. 对固定值域列改成分类数据。
+3. 用分组或多层索引搭出第一版聚合表。
+4. 做 `describe()` / `value_counts()` / `corr()`。
+
+## 关键页面
+
+- [Python 专题：基础工作流与 Jupyter](../python/fundamentals-jupyter.qmd)
+- [Python 专题：分类数据实战](../python/categorical-data-practice.qmd)
+- [Python 专题：层次索引实战](../python/hierarchical-indexing-practice.qmd)
+- [Python 专题：统计摘要、相关性与小分析](../python/stats-correlation-practice.qmd)
+
+## 典型坑
+
+- 一上来就画图或建模，没先看字段和脏值。
+- 类别型字段一直当自由文本处理。
+- 分组结果没排序、没整理，就开始往下串逻辑。
+
+---
+
+**来源映射**：综合《Python for Data Analysis》中 pandas 描述统计、categorical、hierarchical indexing 和案例分析的高频工作流。  
+**最后复核日期**：2026-04-08

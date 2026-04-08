@@ -1,0 +1,53 @@
+---
+title: "筛选、排序、去重"
+---
+
+## 这个页面解决什么问题
+
+把一张原始明细表快速压成“我现在要看的那一部分”，比如保留有效记录、按金额排序、去掉重复客户或重复订单。
+
+## 最小可用示例
+
+::: {.panel-tabset}
+### Python
+
+```python
+filtered = (
+    df.loc[df["amount"] > 100]
+      .sort_values(["customer", "amount"], ascending=[True, False])
+      .drop_duplicates(subset=["customer"], keep="first")
+)
+```
+
+### Excel
+
+```text
+=FILTER(A2:D100,D2:D100>100)
+=SORT(A2:D100,4,-1)
+=UNIQUE(A2:A100)
+```
+
+如果是一次性清洗，也可以直接用“数据 -> 删除重复项”。
+:::
+
+## 真实使用场景
+
+- 客户名单去重：只保留每个客户最新的一条记录。
+- 订单列表筛选：只看金额大于某阈值的订单，再按金额倒序排。
+- 项目跟进表：用 `UNIQUE()` 快速列出负责人名单，再做二次统计。
+
+## 相关函数/公式
+
+- Python：`loc[]`、`query()`、`sort_values()`、`drop_duplicates()`、`isin()`
+- Excel：`FILTER()`、`SORT()`、`UNIQUE()`、删除重复项、自动筛选
+
+## 注意事项
+
+- 去重前先确认唯一键，到底按客户、订单号还是“客户+日期”去重。
+- Excel 手工删除重复项不可逆，正式表先复制一份。
+- Python 里“保留第一条”还是“保留最后一条”要显式写清楚。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 5 章筛选排序基础与第 7 章去重/异常过滤主题，以及《Microsoft Excel 365 Bible》数据清洗与动态数组相关主题。  
+**最后复核日期**：2026-04-08

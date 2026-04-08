@@ -1,0 +1,73 @@
+---
+title: "Python 专题：时间序列与滚动窗口"
+---
+
+## 这个页面解决什么问题
+
+当你的数据天然带有时间顺序，比如日销售、周活跃、月度回款、股票价格、设备指标，就需要一套专门针对时间序列的处理方式，而不是把日期当普通文本列。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+ts = (
+    df.assign(date=pd.to_datetime(df["date"]))
+      .set_index("date")
+      .sort_index()
+)
+
+daily = ts["sales"].resample("D").sum()
+monthly = ts["sales"].resample("M").sum()
+rolling_7 = ts["sales"].rolling(7, min_periods=1).mean()
+yoy = monthly.pct_change(12)
+```
+
+## 真实使用场景
+
+- 日销售趋势：按天重采样后，再加 7 日滚动均值去掉日波动噪声。
+- 月度回款分析：把原始交易时间压成月度序列，再算同比和环比。
+- 运营监控：按小时聚合告警量，用滚动窗口观察是否持续抬升。
+
+## 相关函数/公式
+
+- `pd.to_datetime()`
+- `set_index()` / `sort_index()`
+- `resample()`
+- `rolling()` / `expanding()` / `ewm()`
+- `shift()` / `diff()` / `pct_change()`
+- `PeriodIndex` / `date_range()`
+
+## 这本书强调的几个方法块
+
+### 1. 时间类型和字符串转换
+
+- 先把文本日期统一转成真正的 datetime。
+- 解析失败时优先用 `errors="coerce"`，先把坏值暴露出来。
+
+### 2. 频率与偏移
+
+- `resample("D")` / `resample("M")` 控制观察粒度。
+- `shift()` 常用于构造滞后指标、同比和环比。
+
+### 3. 时区与 Period
+
+- 涉及跨地区数据时，先明确本地时间还是 UTC。
+- 财务和报表语境里，`Period` 往往比裸时间戳更贴近“月/季/年”。
+
+### 4. 移动窗口
+
+- `rolling()` 适合移动平均、移动和、移动波动率。
+- `ewm()` 适合让最近数据权重更高。
+- 用滚动窗口前先确认数据是否已经按时间排序。
+
+## 注意事项
+
+- 时间序列最怕“日期看起来对，其实没排序”。
+- 重采样之前要先想清楚：原始数据是点事件还是区间汇总。
+- 缺失日期不一定要补齐，但做滚动窗口前通常要先明确空档怎么处理。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 11 章 Time Series，尤其是日期类型、频率转换、重采样和移动窗口函数。  
+**最后复核日期**：2026-04-08

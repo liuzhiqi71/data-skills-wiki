@@ -1,0 +1,46 @@
+---
+title: "Python 专题：分类数据实战"
+---
+
+## 这个页面解决什么问题
+
+当一列数据本质上不是自由文本，而是有限类别，比如地区、渠道、客户等级、产品线，就可以把它当成分类数据来处理，让分组、排序和存储更稳。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+df["tier"] = pd.Categorical(
+    df["tier"],
+    categories=["潜客", "普通", "重点", "战略"],
+    ordered=True
+)
+
+summary = df.groupby("tier", observed=True)["amount"].sum()
+```
+
+## 实战场景
+
+- 客户等级有固定顺序：先定义有序分类，再做汇总和排序。
+- 渠道字段反复出现同一批值：分类类型通常比 object 更省内存。
+- 需要控制图表展示顺序：先控制分类顺序，再出图。
+
+## 相关函数
+
+- `pd.Categorical()`
+- `astype("category")`
+- `cat.categories`
+- `cat.codes`
+- `cat.reorder_categories()`
+
+## 注意事项
+
+- 分类数据适合固定值域，不适合每行几乎都不同的字段。
+- 顺序型类别要显式定义顺序，不要靠字母顺序碰运气。
+- 汇总时要注意未出现类别是否需要保留。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 7 章中关于 Categorical Data 的实战主题。  
+**最后复核日期**：2026-04-08

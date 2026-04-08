@@ -1,0 +1,61 @@
+---
+title: "Python 书中案例：Bitly、MovieLens、Baby Names 等"
+---
+
+## 这个页面解决什么问题
+
+如果你想知道《Python for Data Analysis》后半本书是怎么把前面的工具串起来的，这一页给你看几个代表性案例分别训练什么能力。
+
+## 1. Bitly / 1.USA.gov 日志
+
+- 练什么：文本解析、时区统计、分组计数、简单可视化。
+- 单独案例页：[Python 案例：Bitly 日志时区分析](bitly-log-analysis.qmd)
+- 对应能力：
+- [文本拆分与提取](../scenes/text-extract.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+- [可视化与图表](../scenes/visualization-charts.qmd)
+
+## 2. MovieLens 评分数据
+
+- 练什么：多表合并、透视分析、按群体比较评分差异。
+- 单独案例页：[Python 案例：MovieLens 评分差异分析](movielens-rating-analysis.qmd)
+- 对应能力：
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+- [透视表与交叉分析](../scenes/pivot-analysis.qmd)
+
+## 3. 美国婴儿名字数据
+
+- 练什么：长时间序列趋势分析、分组排名、按年份汇总。
+- 单独案例页：[Python 案例：婴儿名字长期趋势分析](baby-names-trend-analysis.qmd)
+- 对应能力：
+- [时间日期处理](../scenes/date-time.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+- [可视化与图表](../scenes/visualization-charts.qmd)
+
+## 4. USDA 食品数据库
+
+- 练什么：层次化数据、重塑、分类统计、数据字典联动。
+- 对应能力：
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+
+## 5. 美国竞选捐款数据
+
+- 练什么：脏数据清洗、金额分桶、按职业/州聚合、透视总结。
+- 对应能力：
+- [清洗缺失值和异常值](../scenes/missing-values.qmd)
+- [筛选、排序、去重](../scenes/filter-sort-dedup.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+
+## 怎么用这些案例
+
+不要把这些案例当作“必须完整复刻的数据项目”。更实用的做法是：
+
+1. 先识别这个案例训练的是哪种动作。
+2. 回到对应场景页，学会最小方法。
+3. 再用你自己的业务数据套一遍。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 13 章 Data Analysis Examples。  
+**最后复核日期**：2026-04-08

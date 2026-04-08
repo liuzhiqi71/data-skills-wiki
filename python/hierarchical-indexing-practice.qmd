@@ -1,0 +1,45 @@
+---
+title: "Python 专题：层次索引实战"
+---
+
+## 这个页面解决什么问题
+
+当你的维度天然是多层的，比如“地区 + 门店”“年 + 月”“客户 + 产品”，层次索引能让你在不把表拍扁的前提下做分组、切片和重塑。
+
+## 最小可用示例
+
+```python
+summary = (
+    df.groupby(["region", "store", "month"])["sales"]
+      .sum()
+      .sort_index()
+)
+
+region_view = summary.loc["华南"]
+wide = summary.unstack("month")
+```
+
+## 实战场景
+
+- 看某个地区下各门店每月销售：多层索引后切片非常直接。
+- 先按多维聚合，再在某一层展开成宽表。
+- 做透视或报表前，先在多层结构中整理好结果。
+
+## 相关函数
+
+- `set_index()`
+- `groupby([...])`
+- `swaplevel()`
+- `sort_index()`
+- `stack()` / `unstack()`
+
+## 注意事项
+
+- 层次索引强在中间处理，不一定适合最终给业务方看的表。
+- 只要一做多层索引，就要尽快保持排序一致。
+- 输出给别人之前，通常还要再 flatten 一次。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 8 章中关于 Hierarchical Indexing、按层统计和重塑的实战主题。  
+**最后复核日期**：2026-04-08

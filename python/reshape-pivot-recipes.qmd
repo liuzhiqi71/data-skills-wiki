@@ -1,0 +1,48 @@
+---
+title: "Python 专题：重塑与透视实战"
+---
+
+## 这个页面解决什么问题
+
+很多业务数据不是“不能分析”，而是表形不对。这个页面只管一件事：把宽表、长表、交叉表之间来回切换到你能继续工作的形状。
+
+## 最小可用示例
+
+```python
+long = df.melt(id_vars=["customer_id"], var_name="metric", value_name="value")
+
+wide = long.pivot(index="customer_id", columns="metric", values="value")
+
+pivot = pd.pivot_table(
+    df,
+    index="region",
+    columns="month",
+    values="sales",
+    aggfunc="sum",
+    fill_value=0
+)
+```
+
+## 实战场景
+
+- 报表是宽表，但你要做分组或作图：先 `melt()`。
+- 明细是长表，但业务方想看交叉表：用 `pivot_table()`。
+- 一列里是指标名，一列里是指标值：重新铺成宽表更适合给别人看。
+
+## 相关方法
+
+- `melt()`
+- `pivot()`
+- `pivot_table()`
+- `stack()` / `unstack()`
+
+## 注意事项
+
+- `pivot()` 要求键唯一；不唯一时用 `pivot_table()`。
+- 输出给业务方前，通常要把索引和列名再整理一次。
+- 先想清楚“分析适合长表，展示适合宽表”。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 8 章 Reshaping and Pivoting，以及第 10 章透视与交叉表相关实战主题。  
+**最后复核日期**：2026-04-08

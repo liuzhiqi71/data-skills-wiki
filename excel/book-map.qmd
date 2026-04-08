@@ -1,0 +1,87 @@
+---
+title: "Excel 书籍地图"
+---
+
+## 这本书在这个站里怎么展开
+
+这张地图把《Microsoft Excel 365 Bible》按 Part 压成几个实际工作块，方便你先找任务，再回头看书。
+
+## 1. 工作簿和表格基础：Part I
+
+- 关注点：工作簿、工作表、范围、表格、格式、模板、打印、界面定制。
+- 适合什么时候看：你需要把原始 Excel 文件整理得更稳、更适合后续分析。
+- 在本站对应：
+- [Excel 专题：工作簿、区域与表格](workbook-ranges-tables.qmd)
+- [Excel 专题：界面、快捷操作与提效](interface-shortcuts-productivity.qmd)
+- [Excel 专题：批注、备注与协作标记实战](comments-notes-practice.qmd)
+- [Excel 专题：模板与打印实战](template-printing-practice.qmd)
+- [读取 CSV / Excel](../scenes/read-csv-excel.qmd)
+- [导出报表](../scenes/export-report.qmd)
+
+## 2. 公式与函数：Part II
+
+- 关注点：基础公式、数组公式、数学与日期、文本、条件判断、查找匹配、错误处理。
+- 在本站对应：
+- [Excel 索引：高频公式与分析动作](index.qmd)
+- [Excel 专题：公式模式与高频写法](formula-patterns.qmd)
+- [Excel 专题：动态数组与数组公式实战](dynamic-array-practice.qmd)
+- [Excel 专题：条件格式实战](conditional-formatting-practice.qmd)
+- [Excel 专题：数据验证实战](data-validation-patterns.qmd)
+- [时间日期处理](../scenes/date-time.qmd)
+- [文本拆分与提取](../scenes/text-extract.qmd)
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+
+## 3. 图表可视化：Part III
+
+- 关注点：基本图表、进阶图表、迷你图、图形呈现。
+- 在本站对应：
+- [可视化与图表](../scenes/visualization-charts.qmd)
+- [Excel 专题：选图、改图与汇报图表实战](chart-reporting-practice.qmd)
+- [Excel 专题：形状、图片与报表润色实战](shapes-images-report-polish.qmd)
+- [Excel 专题：迷你图、数字格式与表内可视化](sparklines-number-format-practice.qmd)
+
+## 4. 数据管理与分析：Part IV
+
+- 关注点：导入清洗、数据验证、链接与汇总、透视表、假设分析、Solver、Analysis ToolPak。
+- 在本站对应：
+- [清洗缺失值和异常值](../scenes/missing-values.qmd)
+- [筛选、排序、去重](../scenes/filter-sort-dedup.qmd)
+- [透视表与交叉分析](../scenes/pivot-analysis.qmd)
+- [分组统计与汇总](../scenes/group-summary.qmd)
+- [Excel 专题：数据验证与保护](data-validation-protection.qmd)
+- [Excel 专题：数据验证实战](data-validation-patterns.qmd)
+- [Excel 专题：分组大纲与结构化报表](outlines-structured-reporting.qmd)
+- [Excel 专题：保护、检查与交付实战](protection-sharing-practice.qmd)
+- [Excel 专题：外部数据连接与刷新实战](external-data-refresh-practice.qmd)
+- [Excel 专题：链接与汇总](linking-consolidation.qmd)
+- [Excel 专题：Analysis ToolPak](analysis-toolpak.qmd)
+
+## 5. Power Pivot 和 Power Query：Part V
+
+- 关注点：数据模型、Power Query 导入、转换、追加、合并、模糊匹配。
+- 在本站对应：
+- [读取 CSV / Excel](../scenes/read-csv-excel.qmd)
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+- [文本拆分与提取](../scenes/text-extract.qmd)
+- [Excel 专题：Power Query 深入](power-query-deep-dive.qmd)
+- [Excel 专题：Power Pivot 与数据模型](power-pivot.qmd)
+
+## 6. 自动化：Part VI
+
+- 关注点：VBA、自定义函数、UserForm、事件、加载项、Office Scripts。
+- 在本站对应：
+- [Excel 专题：自动化、VBA 与 Office Scripts](excel-automation.qmd)
+- [Excel 专题：VBA 自定义函数实战](vba-custom-functions-practice.qmd)
+- [Excel 专题：控件、事件与交互工作表](controls-events-practice.qmd)
+- [Excel 专题：Add-In 打包与分发实战](addins-packaging-practice.qmd)
+
+## 7. 假设分析与优化：Part IV 后段
+
+- 关注点：Data Table、Scenario Manager、Goal Seek、Solver。
+- 在本站对应：
+- [Excel 专题：假设分析、目标求解与 Solver](what-if-solver.qmd)
+
+---
+
+**来源映射**：基于《Microsoft Excel 365 Bible, 2nd Edition》Part / Chapter 结构重组。  
+**最后复核日期**：2026-04-08

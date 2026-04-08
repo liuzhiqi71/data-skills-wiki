@@ -1,0 +1,39 @@
+---
+title: "Excel 专题：Analysis ToolPak"
+---
+
+## 这个页面解决什么问题
+
+当你需要一些比普通公式更像统计工具箱的分析动作，比如描述统计、回归、抽样、移动平均，这时可以考虑 Analysis ToolPak。
+
+## 最小可用思路
+
+1. 启用 Analysis ToolPak。
+2. 选定输入范围。
+3. 选择分析类型并设定输出区域。
+
+## 真实使用场景
+
+- 对一列指标快速做描述统计摘要。
+- 用移动平均做基础趋势平滑。
+- 做简单回归或抽样分析。
+
+## 相关分析类型
+
+- Descriptive Statistics
+- Histogram
+- Correlation
+- Regression
+- Moving Average
+- Sampling
+
+## 注意事项
+
+- ToolPak 适合快速分析，不适合复杂、可重复、需要版本化的分析流程。
+- 结果是“分析输出”，不是自动更新模型。
+- 一旦进入更复杂的统计或机器学习任务，Python 会更合适。
+
+---
+
+**来源映射**：对应《Microsoft Excel 365 Bible》第 29 章 Analyzing Data with the Analysis ToolPak。  
+**最后复核日期**：2026-04-08

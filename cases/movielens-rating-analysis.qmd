@@ -1,0 +1,56 @@
+---
+title: "Python 案例：MovieLens 评分差异分析"
+---
+
+## 这个页面解决什么问题
+
+如果你需要把用户表、行为表、标签表拼在一起，再按群体做对比，这个案例就是最标准的多表合并加透视分析套路。
+
+## 最小可用示例
+
+```python
+import pandas as pd
+
+users = pd.read_csv("users.dat", sep="::", engine="python", names=["user_id", "gender", "age", "job", "zip"])
+ratings = pd.read_csv("ratings.dat", sep="::", engine="python", names=["user_id", "movie_id", "rating", "ts"])
+movies = pd.read_csv("movies.dat", sep="::", engine="python", names=["movie_id", "title", "genres"])
+
+merged = ratings.merge(users, on="user_id").merge(movies, on="movie_id")
+
+pt = pd.pivot_table(
+    merged,
+    values="rating",
+    index="title",
+    columns="gender",
+    aggfunc="mean",
+)
+```
+
+## 真实使用场景
+
+- 用户评价分析：比较不同性别、年龄或地区对同一产品的反馈差异。
+- 内容运营：按影片、节目、课程或商品查看评分分层。
+- 群体分歧判断：不仅看平均值，还可以继续看方差和组间差异。
+
+## 这个案例练什么
+
+- 多表 `merge()`
+- 宽表透视
+- 群体均值比较
+- 从行为明细表转到管理层可读的比较表
+
+## 对应页面
+
+- [查找匹配与关联](../scenes/lookup-join.qmd)
+- [透视表与交叉分析](../scenes/pivot-analysis.qmd)
+- [Python 专题：重塑与透视实战](../python/reshape-pivot-recipes.qmd)
+
+## 注意事项
+
+- 行为表和用户表合并前先确认主键唯一性。
+- 只看均值很容易误判，样本量太小的项目要先过滤。
+
+---
+
+**来源映射**：对应《Python for Data Analysis》第 13.2 节 MovieLens 1M Dataset。  
+**最后复核日期**：2026-04-08
